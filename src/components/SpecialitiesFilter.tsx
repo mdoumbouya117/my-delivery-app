@@ -31,9 +31,9 @@ const SpecialityFilter = ({
 
 	return (
 		<div className='flex overflow-x-auto space-x-4 pr-4 py-4'>
-			{specialities.map((speciality) => (
+			{specialities.map((speciality, index) => (
 				<button
-					key={speciality}
+					key={index}
 					className={`flex-shrink-0 text-sm font-semibold py-2 px-4 rounded-full shadow-md cursor-pointer transition-colors duration-300 
                         ${
 									selectedSpeciality === speciality

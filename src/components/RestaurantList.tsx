@@ -4,61 +4,9 @@ import React, { useState } from 'react'
 import Card from './Card'
 import SpecialityFilter from './SpecialitiesFilter'
 import { useSearchParams } from 'next/navigation'
+import { restaurants } from '@/shared/data'
 
 const revalidate = 5
-
-const restaurants = [
-	{
-		id: '205961',
-		image: 'https://images.pexels.com/photos/205961/pexels-photo-205961.jpeg',
-		name: 'Italian Bistro',
-		rating: 4.5,
-		reviewCount: 214,
-		bgColor: '#F5F5FF',
-		location: 'Collingwood, Ontario',
-		specialties: ['Italian', 'Pasta', 'Wine'],
-	},
-	{
-		id: '958545',
-		image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg',
-		name: 'Sushi Place',
-		rating: 4.7,
-		reviewCount: 214,
-		bgColor: '#DEE8FF',
-		location: 'Collingwood, Ontario',
-		specialties: ['Japanese', 'Sushi', 'Seafood'],
-	},
-	{
-		id: '260922',
-		image: 'https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg',
-		name: 'Burger Joint',
-		rating: 4.2,
-		reviewCount: 214,
-		bgColor: '#F5F5FF',
-		location: 'Collingwood, Ontario',
-		specialties: ['Burgers', 'Fries', 'Milkshakes'],
-	},
-	{
-		id: '2290753',
-		image: 'https://images.pexels.com/photos/2290753/pexels-photo-2290753.jpeg',
-		name: 'Burger Joint',
-		rating: 4.2,
-		reviewCount: 214,
-		bgColor: '#F0F5F7',
-		location: 'Collingwood, Ontario',
-		specialties: ['Burgers', 'Fries', 'Milkshakes'],
-	},
-	{
-		id: '1383776',
-		image: 'https://images.pexels.com/photos/1383776/pexels-photo-1383776.jpeg',
-		name: 'Burger Joint',
-		rating: 4.8,
-		reviewCount: 214,
-		bgColor: '#F3EFF9',
-		location: 'Collingwood, Ontario',
-		specialties: ['Burgers', 'Fries', 'Milkshakes'],
-	},
-]
 
 const specialities = [
 	'All',
@@ -109,7 +57,7 @@ const RestaurantList = () => {
 						rating={restaurant.rating}
 						reviewCount={restaurant.reviewCount}
 						specialties={restaurant.specialties}
-						location={restaurant.location}
+						city={restaurant.city}
 					/>
 				))}
 			</div>
