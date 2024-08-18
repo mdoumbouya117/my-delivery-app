@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import ShoppingCartIcon from "./icons/ShoppingCartIcon";
+import CartPanel from "@/components/CartPanel";
 
 const Navbar = () => (
   <nav
@@ -40,6 +40,7 @@ const Navbar = () => (
             0
           </span>
         </div>
+        <CartPanel />
       </div>
     </div>
   </nav>
