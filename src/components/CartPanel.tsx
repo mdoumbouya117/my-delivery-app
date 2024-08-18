@@ -3,27 +3,26 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
+  SheetTrigger,
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
+import { ReactNode } from "react";
 
-const CartPanel = () => (
+const CartPanel = ({ sheetTrigger }: { sheetTrigger: ReactNode }) => (
   <Sheet>
-    <SheetTrigger asChild>
-      <Button variant="outline">Open</Button>
-    </SheetTrigger>
+    <SheetTrigger asChild>{sheetTrigger}</SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Edit profile</SheetTitle>
-        <SheetDescription>Make changes to your profile here.</SheetDescription>
+        <SheetTitle>Order</SheetTitle>
       </SheetHeader>
       {/* content */}
       <SheetFooter>
         <SheetClose asChild>
-          <Button type="submit">Submit order</Button>
+          <Button type="submit" className="m-auto">
+            Submit order
+          </Button>
         </SheetClose>
       </SheetFooter>
     </SheetContent>
