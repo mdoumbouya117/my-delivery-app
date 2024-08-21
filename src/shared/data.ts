@@ -1,59 +1,11 @@
-type MenuItem = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  availability: boolean;
-  image: string;
-  information?: {
-    calories: number;
-    allergens?: string[];
-    preparation_time: string;
-  };
-};
-
-export type Menu = {
-  category: string;
-  items: MenuItem[];
-};
-
-type Restaurant = {
-  id: string;
-  image: string;
-  ogImage?: string;
-  avatar: string;
-  name: string;
-  description: string;
-  rating: number;
-  reviewCount: number;
-  bgColor: string;
-  city: string;
-  address: string;
-  phone: string;
-  email?: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  specialties: string[];
-  information?: {
-    opening_hours: string;
-    website: string;
-    social_media: {
-      facebook: string;
-      instagram: string;
-    };
-  };
-  menu: Menu[];
-};
-
 /* 
 "id": 4,
 		name: "Burger Barn",
 		description: "Gourmet burgers made with the finest ingredients and creative toppings, served in a cozy atmosphere.",
 		address: "101 Burger Boulevard, Flavor Town"
 */
+
+import { Restaurant } from "@/types/Restaurant";
 
 export const restaurants: Restaurant[] = [
   {

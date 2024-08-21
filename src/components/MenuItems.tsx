@@ -1,15 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import { Menu } from "@/shared/data";
 import ScrollNav from "./ScrollNav";
 import MenuItemCard from "./MenuItem";
+import { Menu } from "@/types/Menu";
 
 type MenuProps = {
+  id: string;
+  name: string;
+  image: string;
   menu: Menu[];
 };
 
-const MenuItems = ({ menu: menuItems }: MenuProps) => {
+const MenuItems = ({ restaurant }: { restaurant: MenuProps }) => {
+  const { id, name, image, menu: menuItems } = restaurant;
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +34,7 @@ const MenuItems = ({ menu: menuItems }: MenuProps) => {
   return (
     <div className="py-5">
       <h2>Menu</h2>
-      <div className="mb-4">
+      <div className="mb-4 max-w-sm">
         <input
           type="text"
           placeholder="Search for a dish..."
@@ -44,7 +49,7 @@ const MenuItems = ({ menu: menuItems }: MenuProps) => {
         )}
       />
       {filteredMenuItems.map((menu) =>
-        menu.items.length > 1 ? (
+        menu.items.length > 0 ? (
           <div
             key={menu.category.replaceAll(" ", "")}
             id={menu.category}
@@ -53,7 +58,13 @@ const MenuItems = ({ menu: menuItems }: MenuProps) => {
             <h3 className="text-2xl font-bold mb-4">{menu.category}</h3>
             <div className="grid grid-cols-1 gap-x-3 gap-y-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {menu.items.map((item) => (
-                <MenuItemCard key={item.id} {...item} />
+                <MenuItemCard
+                  key={item.id}
+                  restaurant_id={id}
+                  restaurant_name={name}
+                  restaurant_image={image}
+                  {...item}
+                />
               ))}
             </div>
           </div>

@@ -1,15 +1,12 @@
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  addToCart,
-  getCart,
-  removeFromCart,
-  clearCart,
-  CartItem,
-} from "@/lib/cart";
+import { useCart } from "@/contexts/CartContext";
+import { formatCurrency } from "@/lib/currency";
 
 const MenuItemCard = ({
   id,
+  restaurant_id,
+  restaurant_name,
+  restaurant_image,
   name,
   description,
   image,
@@ -17,12 +14,17 @@ const MenuItemCard = ({
   quantity,
 }: {
   id: string;
+  restaurant_id: string;
+  restaurant_name: string;
+  restaurant_image: string;
   name: string;
   description: string;
   image: string;
   price: number;
   quantity: number;
 }) => {
+  const { addItem, removeItem } = useCart();
+
   return (
     <div
       key={id}
@@ -38,13 +40,13 @@ const MenuItemCard = ({
         <p className="mt-1 text-sm text-gray-600 line-clamp-2">{description}</p>
         <div className="flex justify-between items-baseline">
           <p className="mt-3 text-sm font-medium text-indigo-600">
-            ${price.toFixed(2)}
+            {formatCurrency(price)}
           </p>
           <div>
             {quantity > 0 ? (
               <>
                 <Button
-                  onClick={() => removeFromCart(id)}
+                  onClick={() => removeItem(id)}
                   className="bg-red-500 text-white px-2 py-1 rounded"
                 >
                   -
@@ -52,8 +54,11 @@ const MenuItemCard = ({
                 <span className="mx-1">{quantity}</span>
                 <Button
                   onClick={() =>
-                    addToCart({
+                    addItem({
                       id,
+                      restaurant_id,
+                      restaurant_name,
+                      restaurant_image,
                       name,
                       price,
                       quantity,
@@ -68,8 +73,11 @@ const MenuItemCard = ({
             ) : (
               <Button
                 onClick={() =>
-                  addToCart({
+                  addItem({
                     id,
+                    restaurant_id,
+                    restaurant_name,
+                    restaurant_image,
                     name,
                     price,
                     quantity,

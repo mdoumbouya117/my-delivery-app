@@ -76,7 +76,14 @@ const RestaurantDetails = ({ params: { id } }: { params: { id: string } }) => {
             </div>
           </dl>
         </div>
-        <MenuItems menu={restaurant.menu} />
+        <MenuItems
+          restaurant={{
+            id: restaurant.id,
+            name: restaurant.name,
+            image: restaurant.image,
+            menu: restaurant.menu,
+          }}
+        />
       </section>
     </div>
   );
