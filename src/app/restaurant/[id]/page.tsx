@@ -33,12 +33,12 @@ const RestaurantDetails = ({ params: { id } }: { params: { id: string } }) => {
         <h1 className="text-2xl font-bold text-gray-900">{restaurant.name}</h1>
         <div className="text-sm text-slate-700 grid grid-cols-1 sm:grid-cols-2 gap-1">
           <div>
-            <p className="font-semibold">Specialties:</p>
+            <p className="font-semibold">Specialties :</p>
             <p>{restaurant.specialties.join(" - ")}</p>
             <p className="mt-4">{restaurant.description}</p>
           </div>
           <div>
-            <p className="font-semibold">Info:</p>
+            <p className="font-semibold">Info :</p>
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Consequuntur in suscipit autem animi, voluptas hic beatae ducimus
