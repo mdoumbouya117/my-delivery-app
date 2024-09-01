@@ -43,7 +43,7 @@ const Card = ({
       <div className="px-2 pb-2">
         <h3 className="mt-2 text-lg font-semibold text-gray-800">{name}</h3>
         <dl>
-          <dt className="sr-only">Specialities</dt>
+          <dt className="sr-only">Specialties</dt>
           <dd>
             {specialties.map((specialty, index) => (
               <span
