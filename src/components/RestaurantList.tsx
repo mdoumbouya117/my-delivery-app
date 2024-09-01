@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import Card from "./Card";
-import SpecialityFilter from "./SpecialitiesFilter";
+import SpecialityFilter from "./SpecialtiesFilter";
 import { useSearchParams } from "next/navigation";
 import { restaurants } from "@/shared/data";
 
 const revalidate = 5;
 
-const specialities = [
+const specialties = [
   "All",
   "Italian",
   "Japanese",
@@ -42,7 +42,7 @@ const RestaurantList = () => {
   return (
     <div>
       <SpecialityFilter
-        specialities={specialities}
+        specialties={specialties}
         selectedSpeciality={selectedSpeciality}
         onSelect={handleSpecialitySelect}
       />
