@@ -4,26 +4,29 @@ import { ColumnDef } from "@tanstack/react-table";
 import { DataTableRowActions } from "./TableRowActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataTableColumnHeader } from "./TableColumnHeader";
-import { customerStatuses } from "@/shared/data/data";
+import { orderStatuses } from "@/shared/data/data";
+import { formatCurrency } from "@/lib/currency";
 
-type CustomerTable = {
+type CourierTable = {
   id: string;
   name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  country: string;
+  status: string;
+  rating: number;
+  reviewCount: number;
+  totalDeliveries: number;
   registeredAt: string;
-  lastOrderDate: string;
-  totalOrders: number;
-  totalSpent: number;
-  loyaltyPoints: number;
-  status: "active" | "inactive" | "banned";
+  vehicle: string;
+  phone: string;
+  email: string;
+  lastDelivery: string;
+  city: string;
+  availableFrom: string;
+  availableTo: string;
+  licensePlate: string;
+  totalEarnings: number;
 };
 
-export const columns: ColumnDef<CustomerTable>[] = [
+export const columns: ColumnDef<CourierTable>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -71,17 +74,37 @@ export const columns: ColumnDef<CustomerTable>[] = [
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "phone",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="email" />
+      <DataTableColumnHeader column={column} title="Phone" />
+    ),
+    cell: ({ row }) => <>{row.getValue("phone")}</>,
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
+  },
+  {
+    accessorKey: "vehicle",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Vehicle" />
     ),
     cell: ({ row }) => (
       <div className="flex space-x-2">
         <span className="max-w-[500px] truncate font-medium">
-          {row.getValue("email")}
+          {row.getValue("vehicle")}
         </span>
       </div>
     ),
+  },
+  {
+    accessorKey: "totalDeliveries",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Total Deliveries" />
+    ),
+    cell: ({ row }) => <>{formatCurrency(row.getValue("totalDeliveries"))}</>,
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
   },
   {
     accessorKey: "status",
@@ -89,7 +112,7 @@ export const columns: ColumnDef<CustomerTable>[] = [
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
-      const status = customerStatuses.find(
+      const status = orderStatuses.find(
         (status) => status.value === row.getValue("status")
       );
 
@@ -111,17 +134,10 @@ export const columns: ColumnDef<CustomerTable>[] = [
     },
   },
   {
-    accessorKey: "phone",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="phone" />
-    ),
-    cell: ({ row }) => <>{row.getValue("phone")}</>,
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
-  },
-  {
     id: "actions",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Actions" />
+    ),
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];
