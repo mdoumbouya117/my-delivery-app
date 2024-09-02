@@ -37,13 +37,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 <!--  -->
 
+# List of customer statuses :
+
+- Active
+- Inactive
+- Banned
+
 # List of order statuses :
 
 - Pending: The order has been placed but not yet confirmed by the restaurant.
 - Confirmed: The restaurant has confirmed the order.
 - Preparing: The restaurant is currently preparing the order.
 - Ready for Pickup: The order is ready to be picked up by the customer or delivery driver.
-- Out for Delivery: The order is being delivered to the customer.
+- On the Way: The order is being delivered to the customer.
 - Delivered: The order has been successfully delivered to the customer.
 - Cancelled: The order has been cancelled, either by the customer or the restaurant.
 - Refunded: The order has been refunded to the customer.
@@ -51,3 +57,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - In Progress: The order is in the process of being prepared.
 - Awaiting Payment: The order has been placed, but payment is pending.
 - On Hold: The order is temporarily on hold, possibly due to issues with payment or other reasons.
+
+# List of types of users
+
+Here are some common types of users you can have on a delivery app:
+
+1. **Customer/User**: The primary users who browse, order, and track deliveries.
+2. **Restaurant Owner/Manager**: Manages restaurant listings, menu items, and incoming orders.
+3. **Delivery Driver/Courier**: Handles the delivery of orders from restaurants to customers.
+4. **Admin**: Manages the overall platform, including user management, monitoring orders, handling disputes, and platform maintenance.
