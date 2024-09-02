@@ -4,17 +4,19 @@ export type Restaurant = {
   id: string;
   image: string;
   ogImage?: string;
-  avatar: string;
+  logo: string;
   name: string;
-  description: string;
-  rating: number;
-  reviewCount: number;
-  bgColor: string;
-  city: string;
-  address: string;
+  owner: string;
+  status: "active" | "deactive";
+  description?: string;
+  rating?: number;
+  reviewCount?: number;
+  bgColor?: string;
+  city?: string;
+  address?: string;
   phone: string;
   email?: string;
-  location: {
+  location?: {
     latitude: number;
     longitude: number;
   };
@@ -27,5 +29,5 @@ export type Restaurant = {
       instagram: string;
     };
   };
-  menu: Menu[];
+  menu?: Menu[];
 };

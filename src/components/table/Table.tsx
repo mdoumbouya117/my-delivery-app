@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -24,18 +25,22 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DataTablePagination } from "./TablePagination";
-import { DataTableToolbar } from "./TableToolbar";
+import { DataTablePagination } from "../table/TablePagination";
+import { DataTableToolbar as DataTableToolbarRestaurants } from "../table/TableToolbar";
+import { DataTableToolbar as DataTableToolbarCustomers } from "../table/TableToolbarCustomers";
+import { DataTableToolbar } from "./TableToolbarOrders";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data: any;
+  // data: TData[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const pathname = usePathname();
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -65,7 +70,13 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+      {pathname.includes("orders") && <DataTableToolbar table={table} />}
+      {pathname.includes("restaurants") && (
+        <DataTableToolbarRestaurants table={table} />
+      )}
+      {pathname.includes("customers") && (
+        <DataTableToolbarCustomers table={table} />
+      )}
       <div className="rounded-md border">
         <Table>
           <TableHeader>

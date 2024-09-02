@@ -6,8 +6,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EllipsisIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Row } from "@tanstack/react-table";
 
-export function DataTableRowActions() {
+interface DataTableRowActionsProps<TData> {
+  row: Row<TData>;
+}
+
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
