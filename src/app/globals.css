@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.data-\[state\=open\]\:duration-500[data-state="open"] {
+  height: fit-content;
+}

@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -44,7 +45,7 @@ const nav = [
 export default function AdminLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <>

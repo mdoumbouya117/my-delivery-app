@@ -42,7 +42,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -58,7 +58,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -74,7 +74,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -90,7 +90,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg",
             information: {
               calories: 720,
               allergens: ["Dairy", "Egg", "Gluten"],
@@ -111,7 +111,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -127,7 +127,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -143,7 +143,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -159,7 +159,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg",
             information: {
               calories: 720,
               allergens: ["Dairy", "Egg", "Gluten"],
@@ -172,7 +172,7 @@ export const restaurants: Restaurant[] = [
         category: "Boissons",
         items: [
           {
-            id: "501",
+            id: "5101",
             name: "Margherita Pizza",
             description:
               "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
@@ -180,7 +180,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -188,7 +188,7 @@ export const restaurants: Restaurant[] = [
             },
           },
           {
-            id: "503",
+            id: "5103",
             name: "Margherita Pizza",
             description:
               "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
@@ -196,7 +196,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -204,7 +204,7 @@ export const restaurants: Restaurant[] = [
             },
           },
           {
-            id: "504",
+            id: "5104",
             name: "Margherita Pizza",
             description:
               "Classic pizza topped with fresh mozzarella, tomatoes, and basil.",
@@ -212,7 +212,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg",
             information: {
               calories: 680,
               allergens: ["Dairy", "Gluten"],
@@ -220,7 +220,7 @@ export const restaurants: Restaurant[] = [
             },
           },
           {
-            id: "502",
+            id: "5102",
             name: "Spaghetti Carbonara",
             description:
               "Traditional spaghetti with a creamy egg and pancetta sauce.",
@@ -228,7 +228,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/725990/pexels-photo-725990.jpeg",
             information: {
               calories: 720,
               allergens: ["Dairy", "Egg", "Gluten"],
@@ -249,7 +249,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/4078174/pexels-photo-4078174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/4078174/pexels-photo-4078174.jpeg",
             information: {
               calories: 450,
               allergens: ["Dairy", "Gluten"],
@@ -264,7 +264,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/302468/pexels-photo-302468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/302468/pexels-photo-302468.jpeg",
             information: {
               calories: 350,
               allergens: ["Dairy"],
@@ -285,7 +285,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/4078174/pexels-photo-4078174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/4078174/pexels-photo-4078174.jpeg",
             information: {
               calories: 450,
               allergens: ["Dairy", "Gluten"],
@@ -300,7 +300,7 @@ export const restaurants: Restaurant[] = [
             quantity: 0,
             availability: true,
             image:
-              "https://images.pexels.com/photos/302468/pexels-photo-302468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+              "https://images.pexels.com/photos/302468/pexels-photo-302468.jpeg",
             information: {
               calories: 350,
               allergens: ["Dairy"],
@@ -344,7 +344,7 @@ export const restaurants: Restaurant[] = [
         category: "Sushi",
         items: [
           {
-            id: "301",
+            id: "3011",
             name: "Dragon Roll",
             description:
               "Shrimp tempura and avocado roll topped with eel and sweet sauce.",
@@ -359,7 +359,7 @@ export const restaurants: Restaurant[] = [
             },
           },
           {
-            id: "302",
+            id: "3022",
             name: "Salmon Nigiri",
             description: "Slices of fresh salmon over sushi rice.",
             price: 8.99,
@@ -378,7 +378,7 @@ export const restaurants: Restaurant[] = [
         category: "Appetizers",
         items: [
           {
-            id: "401",
+            id: "4011",
             name: "Edamame",
             description: "Steamed and salted soybeans.",
             price: 4.99,
@@ -392,7 +392,7 @@ export const restaurants: Restaurant[] = [
             },
           },
           {
-            id: "402",
+            id: "4022",
             name: "Gyoza",
             description: "Pan-fried dumplings with a savory pork filling.",
             price: 6.99,

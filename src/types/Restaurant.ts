@@ -11,8 +11,8 @@ export type Restaurant = {
   description?: string;
   rating?: number;
   reviewCount?: number;
-  bgColor?: string;
-  city?: string;
+  bgColor: string; // deafutl white
+  city: string;
   address?: string;
   phone: string;
   email?: string;

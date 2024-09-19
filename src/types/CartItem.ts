@@ -1,16 +1,23 @@
-export interface CartItem {
-  id: string;
-  restaurant_id: string;
-  restaurant_name: string;
-  restaurant_image: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  imageUrl?: string;
-  description?: string;
-}
-
 export type Cart = {
   [restaurantId: string]: CartItem[];
+};
+
+export type MenuCart = {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+};
+
+export type RestaurantCart = {
+  id: string;
+  name: string;
+  image: string;
+  rating: number;
+};
+
+export type CartItem = {
+  menu: MenuCart;
+  quantity: number;
+  restaurant: RestaurantCart;
 };

@@ -1,72 +1,145 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
-import { CartItem } from "../types/CartItem";
+import { useStorage } from "@/hooks/useStorage";
+import { CartItem, MenuCart, RestaurantCart } from "@/types/CartItem";
 import {
-  addToCart,
-  clearCart,
-  getCart,
-  removeFromCart,
-} from "@/lib/cartStorage";
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+} from "react";
 
-interface CartContextProps {
-  cartItems: CartItem[];
-  cartCount: number;
-  addItem: (item: CartItem) => void;
-  removeItem: (itemId: string) => void;
-  clearCart: () => void;
-}
-
-const CartContext = createContext<CartContextProps | undefined>(undefined);
-
-export const useCart = (): CartContextProps => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
-  return context;
+type CartProviderProps = {
+  children: ReactNode;
 };
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+type TypeCartContext = {
+  getItemQuantity: (id: string) => number;
+  incrementQuantity: (menu: MenuCart, restaurant: RestaurantCart) => void;
+  decrementQuantity: (id: string) => void;
+  removeFromCart: (id: string) => void;
+  clearCart: () => void;
+  menuQuantity: (menuId: string) => number;
+  getTotalPrice: () => number;
+  cartQuantity: number;
+  cartItems: CartItem[];
+};
 
-  useEffect(() => {
-    setCartItems(getCart());
-  }, []);
+const CartContext = createContext({} as TypeCartContext);
 
-  const addItem = (item: CartItem) => {
-    addToCart(item);
-    setCartItems(getCart());
-  };
+export const useCart = () => {
+  return useContext(CartContext);
+};
+export const CartProvider = ({ children }: CartProviderProps) => {
+  const [cartItems, setCartItems] = useStorage<CartItem[]>("shopping-cart", []);
 
-  const removeItem = (itemId: string) => {
-    removeFromCart(itemId);
-    setCartItems(getCart());
-  };
-
-  const clearCartItems = () => {
-    clearCart();
-    setCartItems([]);
-  };
-
-  return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        cartCount,
-        addItem,
-        removeItem,
-        clearCart: clearCartItems,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+  const cartQuantity = cartItems.reduce(
+    (quantity, item) => item.quantity + quantity,
+    0
   );
+
+  const menuQuantity = useCallback(
+    (menuId: string): number =>
+      cartItems?.find(({ menu }) => menu.id === menuId)?.quantity || 0,
+    [cartItems]
+  );
+
+  const getItemQuantity = useCallback(
+    (id: string) => {
+      return cartItems.find(({ menu }) => menu.id === id)?.quantity || 0;
+    },
+    [cartItems]
+  );
+
+  const incrementQuantity = useCallback(
+    (menu: MenuCart, restaurant: RestaurantCart) => {
+      setCartItems((currItems) => {
+        if (currItems.find((item) => item.menu.id === menu.id) == null) {
+          return [
+            ...currItems,
+            {
+              restaurant,
+              menu,
+              quantity: 1,
+            } as CartItem,
+          ];
+        } else {
+          return currItems.map((item) => {
+            if (item.menu.id === menu.id) {
+              return { ...item, quantity: item.quantity + 1 };
+            } else {
+              return item;
+            }
+          });
+        }
+      });
+    },
+    [setCartItems]
+  );
+
+  const decrementQuantity = useCallback(
+    (id: string) => {
+      setCartItems((currItems) => {
+        if (currItems.find(({ menu }) => menu.id === id)?.quantity === 1) {
+          return currItems.filter(({ menu }) => menu.id !== id);
+        } else {
+          return currItems.map((item) => {
+            if (item.menu.id === id) {
+              return { ...item, quantity: item.quantity - 1 };
+            } else {
+              return item;
+            }
+          });
+        }
+      });
+    },
+    [setCartItems]
+  );
+
+  const removeFromCart = useCallback(
+    (id: string) => {
+      setCartItems((prevItems) =>
+        prevItems.filter(({ menu }) => menu.id !== id)
+      );
+    },
+    [setCartItems]
+  );
+
+  const clearCart = useCallback(() => {
+    setCartItems([]);
+  }, [setCartItems]);
+  const getTotalPrice = useCallback(() => {
+    return cartItems.reduce(
+      (total, item) => total + item.menu.price * item.quantity,
+      0
+    );
+  }, [cartItems]);
+
+  const value = useMemo(
+    () => ({
+      getItemQuantity,
+      incrementQuantity,
+      decrementQuantity,
+      removeFromCart,
+      clearCart,
+      menuQuantity,
+      getTotalPrice,
+      cartItems,
+      cartQuantity,
+    }),
+    [
+      cartItems,
+      cartQuantity,
+      clearCart,
+      decrementQuantity,
+      getItemQuantity,
+      getTotalPrice,
+      incrementQuantity,
+      menuQuantity,
+      removeFromCart,
+    ]
+  );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

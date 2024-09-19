@@ -2,19 +2,19 @@
 
 import React, { useState } from "react";
 import ScrollNav from "./ScrollNav";
-import MenuItemCard from "./MenuItem";
 import { Menu } from "@/types/Menu";
+import MenuItem from "./MenuItem";
 
 type MenuProps = {
   id: string;
   name: string;
   image: string;
+  rating: number;
   menu: Menu[];
 };
 
 const MenuItems = ({ restaurant }: { restaurant: MenuProps }) => {
-  const { id, name, image, menu: menuItems } = restaurant;
-
+  const { id, name, image, rating, menu: menuItems } = restaurant;
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,12 +58,16 @@ const MenuItems = ({ restaurant }: { restaurant: MenuProps }) => {
             <h3 className="text-2xl font-bold mb-4">{menu.category}</h3>
             <div className="grid grid-cols-1 gap-x-3 gap-y-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {menu.items.map((item) => (
-                <MenuItemCard
+                <MenuItem
                   key={item.id}
-                  restaurant_id={id}
-                  restaurant_name={name}
-                  restaurant_image={image}
-                  {...item}
+                  menu={{
+                    id: item.id,
+                    name: item.name,
+                    image: item.image,
+                    price: item.price,
+                    description: item.description,
+                  }}
+                  restaurant={{ id, name, image, rating }}
                 />
               ))}
             </div>

@@ -1,125 +1,84 @@
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { useCart } from "@/contexts/CartContext";
 import { formatCurrency } from "@/lib/currency";
+import { RestaurantCart } from "@/types/CartItem";
+import { Button } from "@/components/ui/button";
+import { imageLoader } from "@/lib/imageLoader";
 
-const MenuItemCard = ({
-  id,
-  restaurant_id,
-  restaurant_name,
-  restaurant_image,
-  name,
-  description,
-  image,
-  price,
-  quantity,
+const MenuItem = ({
+  menu,
+  restaurant,
 }: {
-  id: string;
-  restaurant_id: string;
-  restaurant_name: string;
-  restaurant_image: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-  quantity: number;
+  menu: {
+    id: string;
+    name: string;
+    description: string;
+    image: string;
+    price: number;
+  };
+  restaurant: RestaurantCart;
 }) => {
-  const { addItem, removeItem } = useCart();
+  const { id, name, description, image, price } = menu;
+  const { incrementQuantity, decrementQuantity, menuQuantity } = useCart();
+  const { currency, price: formattedPrice } = formatCurrency(price);
 
   return (
     <div
-      key={id}
-      className="flex flex-row items-start overflow-hidden shadow p-1"
+      className={`p-1 border rounded-lg shadow-sm${
+        menuQuantity(menu.id) > 0
+          ? " border-2 border-dashed border-violet-700"
+          : ""
+      }`}
     >
-      <div className="w-1/3 h-28 overflow-hidden">
-        <img src={image} alt={name} className="w-full h-full object-cover" />
-      </div>
-      <div className="w-2/3 pl-2">
-        <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">
-          {name}
-        </h3>
-        <p className="mt-1 text-sm text-gray-600 line-clamp-2">{description}</p>
-        <div className="flex justify-between items-baseline">
-          <p className="mt-3 text-sm font-medium text-indigo-600">
-            {formatCurrency(price)}
-          </p>
-          <div>
-            {quantity > 0 ? (
-              <>
-                <Button
-                  onClick={() => removeItem(id)}
-                  className="bg-red-500 text-white px-2 py-1 rounded"
-                >
-                  -
-                </Button>
-                <span className="mx-1">{quantity}</span>
-                <Button
-                  onClick={() =>
-                    addItem({
-                      id,
-                      restaurant_id,
-                      restaurant_name,
-                      restaurant_image,
-                      name,
-                      price,
-                      quantity,
-                      image,
-                    })
-                  }
-                  className="bg-green-500 text-white px-2 py-1 rounded"
-                >
-                  +
-                </Button>
-              </>
-            ) : (
-              <Button
-                onClick={() =>
-                  addItem({
-                    id,
-                    restaurant_id,
-                    restaurant_name,
-                    restaurant_image,
-                    name,
-                    price,
-                    quantity,
-                    image,
-                  })
-                }
-                className="bg-green-500 text-white px-4 py-1 rounded"
-              >
-                +
-              </Button>
-            )}
-          </div>
+      <div className="flex mb-3">
+        <Image
+          loader={imageLoader}
+          src={image}
+          alt={name}
+          width={80}
+          height={80}
+          priority
+          className="object-cover rounded-lg mr-3"
+        />
+        <div>
+          <h3 className="text-lg font-bold line-clamp-1">{name}</h3>
+          <p className="text-sm text-gray-500 line-clamp-2">{description}</p>
         </div>
-        {/* <div className="mt-3 flex items-center space-x-2">
-          {quantity > 0 ? (
-            <>
-              <button
-                onClick={handleRemove}
-                className="bg-red-500 text-white px-2 py-1 rounded"
-              >
-                -
-              </button>
-              <span>{quantity}</span>
-              <button
-                onClick={handleAdd}
-                className="bg-green-500 text-white px-2 py-1 rounded"
-              >
-                +
-              </button>
-            </>
-          ) : (
-            <button
-              onClick={handleAdd}
-              className="bg-green-500 text-white px-4 py-1 rounded"
+      </div>
+      <div className="flex items-center justify-between">
+        <span className="text-xl font-semibold">
+          <span className="text-black mr-1">{currency}</span>
+          <span className="text-gray-400">{formattedPrice}</span>
+        </span>
+        {menuQuantity(menu.id) > 0 ? (
+          <div className="flex items-center justify-between bg-gray-100 rounded-full w-28 h-8">
+            <Button
+              onClick={() => decrementQuantity(menu.id)}
+              className="bg-white border border-gray-100 hover:bg-slate-100 text-black px-3 py-1 rounded-full h-8"
+            >
+              -
+            </Button>
+            <span className="mx-1 space-x-4 text-gray-500">
+              {menuQuantity(menu.id)}
+            </span>
+            <Button
+              onClick={() => incrementQuantity(menu, restaurant)}
+              className="bg-blue-500 border border-gray-100 hover:bg-blue-700 text-white px-3 py-1 rounded-full h-8"
             >
               +
-            </button>
-          )}
-        </div> */}
+            </Button>
+          </div>
+        ) : (
+          <Button
+            onClick={() => incrementQuantity(menu, restaurant)}
+            className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-full h-8"
+          >
+            +
+          </Button>
+        )}
       </div>
     </div>
   );
 };
 
-export default MenuItemCard;
+export default MenuItem;
