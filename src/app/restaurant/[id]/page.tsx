@@ -1,23 +1,46 @@
 import { Metadata, ResolvingMetadata } from "next";
-import React from "react";
+import Image from "next/image";
 import { getRestaurantById } from "@/lib/api";
 import { notFound } from "next/navigation";
 import StartIcon from "@/components/icons/StartIcon";
 import LoyaltyIcon from "@/components/icons/LoyaltyIcon";
 import MenuItems from "@/components/MenuItems";
+import { imageLoader } from "@/lib/imageLoader";
 
 type MetadataParams = {
   params: { id: string };
 };
 
-const RestaurantDetails = ({ params: { id } }: { params: { id: string } }) => {
-  const restaurant = getRestaurantById(id);
+const RestaurantDetails = async ({
+  params: { id },
+}: {
+  params: { id: string };
+}) => {
+  const restaurant = await getRestaurantById(id);
 
   if (!restaurant) return notFound();
 
   return (
     <div className="min-h-screen bg-white">
       <header className="relative">
+        {/* <Image
+          loader={imageLoader}
+          alt={`Image of ${restaurant.name}`}
+          className="object-cover h-48 w-full"
+          src={restaurant.image}
+          width={100}
+          height={100}
+          priority
+        />
+        <Image
+          loader={imageLoader}
+          className="absolute top-3/4 left-4 h-20 w-20 border-4 border-white"
+          src={restaurant.image}
+          width={100}
+          height={100}
+          alt={`Logo of ${restaurant.name}`}
+          priority
+        /> */}
         <img
           className="object-cover h-48 w-full"
           src={restaurant.image}
@@ -81,7 +104,8 @@ const RestaurantDetails = ({ params: { id } }: { params: { id: string } }) => {
             id: restaurant.id,
             name: restaurant.name,
             image: restaurant.image,
-            menu: restaurant.menu,
+            menu: restaurant.menu ?? [],
+            rating: restaurant.rating ?? 0,
           }}
         />
       </section>
@@ -89,9 +113,11 @@ const RestaurantDetails = ({ params: { id } }: { params: { id: string } }) => {
   );
 };
 
-export const generateMetadata = ({ params }: MetadataParams): Metadata => {
+export const generateMetadata = async ({
+  params,
+}: MetadataParams): Promise<Metadata> => {
   const id = params.id;
-  const restaurant = getRestaurantById(id);
+  const restaurant = await getRestaurantById(id);
 
   if (!restaurant) {
     return notFound();
