@@ -40,7 +40,7 @@ const Card = ({
         width={500}
         height={300}
         priority
-        className="object-cover	 group-hover:opacity-75"
+        className="object-cover w-auto group-hover:opacity-75"
       />
     </div>
     <div className="px-2 pb-2">

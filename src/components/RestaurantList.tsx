@@ -40,13 +40,13 @@ const RestaurantList = () => {
     : restaurants;
 
   return (
-    <div>
+    <>
       <SpecialityFilter
         specialties={specialties}
         selectedSpeciality={selectedSpeciality}
         onSelect={handleSpecialitySelect}
       />
-      <div className="grid grid-cols-1 gap-x-4 gap-y-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-4">
         {filteredRestaurants.map((restaurant, index) => (
           <Card
             id={restaurant.id}
@@ -61,7 +61,7 @@ const RestaurantList = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
