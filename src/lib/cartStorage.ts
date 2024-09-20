@@ -21,7 +21,7 @@ export const saveCart = (cartItems: CartItem[]): void => {
 export const addToCart = (newItem: CartItem): void => {
   const cartItems = getCart();
   const existingItemIndex = cartItems.findIndex(
-    (item) => item.id === newItem.id
+    (item) => item.menu.id === newItem.menu.id
   );
 
   if (existingItemIndex !== -1) {
@@ -34,7 +34,7 @@ export const addToCart = (newItem: CartItem): void => {
 };
 
 export const removeFromCart = (itemId: string): void => {
-  const cartItems = getCart().filter((item) => item.id !== itemId);
+  const cartItems = getCart().filter((item) => item.menu.id !== itemId);
   saveCart(cartItems);
 };
 
