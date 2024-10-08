@@ -84,7 +84,6 @@ export default function SignUp() {
 
       router.push("/");
     } catch (err) {
-      console.log(err);
       setError("Error creating account");
     }
   };

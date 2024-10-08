@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { CartProvider } from "@/contexts/CartProvider";
 import UserProviderWrapper from "@/components/UserProviderWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Eazy Eats",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <CartProvider>
           <UserProviderWrapper>
             <Navbar />
+            <Toaster position="top-right" theme="system" closeButton />
             {children}
           </UserProviderWrapper>
         </CartProvider>
