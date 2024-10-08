@@ -20,7 +20,6 @@ export const sendNotification = async (
     const data = await response.json();
     return data;
   } catch (error) {
-    // Cast error to Error to access its message property
     const errorMessage =
       (error as Error).message || "An unknown error occurred";
     console.error("Error sending notification:", errorMessage);
