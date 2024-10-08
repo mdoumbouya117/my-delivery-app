@@ -6,7 +6,7 @@ export const useStorage = <T>(key: string, initialValue: T) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const item = localStorage.getItem(key);
-      if (item) {
+      if (item && item !== "undefined") {
         setStoredValue(JSON.parse(item));
       }
     }

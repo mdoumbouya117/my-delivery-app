@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import {
   Card,
@@ -45,6 +44,9 @@ export default function SignIn() {
           </Button>
           <Button variant="outline" className="w-full">
             Login with Google
+          </Button>
+          <Button variant="outline" className="w-full">
+            Login with Facebook
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">

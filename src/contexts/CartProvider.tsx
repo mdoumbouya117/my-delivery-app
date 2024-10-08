@@ -14,7 +14,7 @@ type CartProviderProps = {
   children: ReactNode;
 };
 
-type TypeCartContext = {
+type TypeCartProvider = {
   incrementQuantity: (menu: MenuCart, restaurant: RestaurantCart) => void;
   decrementQuantity: (id: string) => void;
   removeFromCart: (id: string) => void;
@@ -25,7 +25,7 @@ type TypeCartContext = {
   cartItems: CartItem[];
 };
 
-const CartContext = createContext<TypeCartContext | undefined>(undefined);
+const CartContext = createContext<TypeCartProvider | undefined>(undefined);
 
 export const useCart = () => {
   const context = useContext(CartContext);

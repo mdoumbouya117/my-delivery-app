@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartProvider";
 import { formatCurrency } from "@/lib/currency";
 import { RestaurantCart } from "@/types/CartItem";
 import { Button } from "@/components/ui/button";
