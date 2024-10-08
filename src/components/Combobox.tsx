@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowDownUpIcon, CheckIcon, X } from "lucide-react";
+import { ChevronDownIcon, CheckIcon, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -79,9 +79,9 @@ export default function Combobox({
               </div>
             </div>
           ) : (
-            "Select specialties"
+            <span className="text-muted-foreground">Select specialties</span>
           )}
-          <ArrowDownUpIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <ChevronDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">

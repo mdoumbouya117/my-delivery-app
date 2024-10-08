@@ -3,10 +3,21 @@
 import Link from "next/link";
 import CartPanel from "@/components/CartPanel";
 import ShoppingCartIcon from "./icons/ShoppingCartIcon";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartProvider";
+import { useUser } from "@/contexts/UserProvider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const { cartQuantity } = useCart();
+  const { currentUser, userInfos, logout } = useUser();
 
   return (
     <nav
@@ -18,22 +29,42 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link
             href="/"
-            aria-label="Go to Eazy Delivery home page"
+            aria-label="Go to Eazy Eats home page"
             className="flex items-center"
           >
             <span className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">
-              Eazy Delivery
+              Eazy Eats
             </span>
           </Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Link
-            href="/signin"
-            aria-label="Sign in to your account"
-            className="bg-primary px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Login
-          </Link>
+          {currentUser ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar className="cursor-pointer">
+                  <AvatarImage src={userInfos?.photoURL} />
+                  <AvatarFallback>
+                    {userInfos?.displayName?.slice(0, 2)?.toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout} className="cursor-pointer">
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link
+              href="/signin"
+              aria-label="Sign in to your account"
+              className="bg-primary px-3 py-2 text-sm font-medium text-white rounded-md hover:bg-primary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Login
+            </Link>
+          )}
           <CartPanel
             sheetTrigger={
               <div

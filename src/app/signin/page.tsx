@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import Link from "next/link";
 import {
   Card,
@@ -8,10 +9,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@/contexts/UserProvider";
+import { FormEvent, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const router = useRouter();
+  const { loginWithEmail } = useUser();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const onLogin = async (event: FormEvent) => {
+    event.preventDefault();
+
+    const email = emailRef.current?.value as NonNullable<string>;
+    const password = passwordRef.current?.value as NonNullable<string>;
+
+    await loginWithEmail(email, password);
+
+    router.push("/");
+  };
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -21,11 +40,10 @@ export default function SignIn() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
+        <form onSubmit={onLogin} className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
             <Input
-              id="email"
+              ref={emailRef}
               type="email"
               placeholder="m@example.com"
               required
@@ -33,12 +51,11 @@ export default function SignIn() {
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
-              <Label htmlFor="password">Password</Label>
               <Link href="#" className="ml-auto inline-block text-sm underline">
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required />
+            <Input ref={passwordRef} type="password" required />
           </div>
           <Button type="submit" className="w-full">
             Login
@@ -46,7 +63,10 @@ export default function SignIn() {
           <Button variant="outline" className="w-full">
             Login with Google
           </Button>
-        </div>
+          <Button variant="outline" className="w-full">
+            Login with Facebook
+          </Button>
+        </form>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <Link href="/signup" className="underline">

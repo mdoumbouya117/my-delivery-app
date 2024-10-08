@@ -14,8 +14,7 @@ type CartProviderProps = {
   children: ReactNode;
 };
 
-type TypeCartContext = {
-  getItemQuantity: (id: string) => number;
+type TypeCartProvider = {
   incrementQuantity: (menu: MenuCart, restaurant: RestaurantCart) => void;
   decrementQuantity: (id: string) => void;
   removeFromCart: (id: string) => void;
@@ -26,29 +25,27 @@ type TypeCartContext = {
   cartItems: CartItem[];
 };
 
-const CartContext = createContext({} as TypeCartContext);
+const CartContext = createContext<TypeCartProvider | undefined>(undefined);
 
 export const useCart = () => {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+  if (context === undefined) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
 };
+
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cartItems, setCartItems] = useStorage<CartItem[]>("shopping-cart", []);
 
-  const cartQuantity = cartItems.reduce(
-    (quantity, item) => item.quantity + quantity,
-    0
+  const cartQuantity = useMemo(
+    () => cartItems.reduce((quantity, item) => item.quantity + quantity, 0),
+    [cartItems]
   );
 
   const menuQuantity = useCallback(
     (menuId: string): number =>
-      cartItems?.find(({ menu }) => menu.id === menuId)?.quantity || 0,
-    [cartItems]
-  );
-
-  const getItemQuantity = useCallback(
-    (id: string) => {
-      return cartItems.find(({ menu }) => menu.id === id)?.quantity || 0;
-    },
+      cartItems?.find(({ menu }) => menu.id === menuId)?.quantity ?? 0,
     [cartItems]
   );
 
@@ -118,7 +115,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const value = useMemo(
     () => ({
-      getItemQuantity,
       incrementQuantity,
       decrementQuantity,
       removeFromCart,
@@ -133,7 +129,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       cartQuantity,
       clearCart,
       decrementQuantity,
-      getItemQuantity,
       getTotalPrice,
       incrementQuantity,
       menuQuantity,

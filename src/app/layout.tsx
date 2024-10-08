@@ -2,7 +2,9 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import { CartProvider } from "@/contexts/CartContext";
+import { CartProvider } from "@/contexts/CartProvider";
+import UserProviderWrapper from "@/components/UserProviderWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Eazy Eats",
@@ -18,8 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-          <Navbar />
-          {children}
+          <UserProviderWrapper>
+            <Navbar />
+            <Toaster position="top-right" theme="system" closeButton />
+            {children}
+          </UserProviderWrapper>
         </CartProvider>
       </body>
     </html>

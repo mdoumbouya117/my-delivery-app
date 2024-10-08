@@ -30,7 +30,7 @@ const SpecialtyFilter = ({
   }, [onSelect, searchParams]);
 
   return (
-    <div className="flex overflow-x-auto space-x-4 pr-4 py-4">
+    <div className="flex overflow-x-auto space-x-4 pr-4 py-1">
       {specialties.map((speciality, index) => (
         <button
           key={index}

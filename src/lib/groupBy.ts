@@ -2,9 +2,11 @@ import { CartItem } from "@/types/CartItem";
 
 export const groupBy = (tempItems: CartItem[]): Record<string, CartItem[]> =>
   tempItems.reduce((group: any, cartItem: CartItem) => {
-    const { restaurant_id } = cartItem;
-    group[restaurant_id] = group[restaurant_id] ?? [];
-    group[restaurant_id].push(cartItem);
+    const {
+      restaurant: { id },
+    } = cartItem;
+    group[id] = group[id] ?? [];
+    group[id].push(cartItem);
     return group;
   }, {});
 

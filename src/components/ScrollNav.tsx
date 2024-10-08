@@ -21,7 +21,7 @@ const ScrollNav = ({ categories }: ScrollNavProps) => {
   );
 
   return (
-    <div className="flex overflow-x-auto space-x-4 pr-4 py-4 bg-white sticky top-0 z-10">
+    <div className="flex overflow-x-auto space-x-4 pr-4 py-1 bg-white sticky top-0 z-10">
       {categories.map((category, index) =>
         category ? (
           <button

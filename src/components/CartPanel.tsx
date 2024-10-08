@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/sheet";
 import { groupBy } from "@/lib/groupBy";
 import { formatCurrencyFull } from "@/lib/currency";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartProvider";
 import { imageLoader } from "@/lib/imageLoader";
 
 const CartPanel = ({ sheetTrigger }: { sheetTrigger: ReactNode }) => {
