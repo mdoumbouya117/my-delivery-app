@@ -58,7 +58,6 @@ const useFcmToken = () => {
     isLoading.current = true;
     const token = await getNotificationPermissionAndToken();
 
-    // Step 5: Handle the case where permission is denied.
     if (Notification.permission === "denied") {
       setNotificationPermissionStatus("denied");
       console.info("Push Notifications issue - permission denied");
@@ -66,7 +65,7 @@ const useFcmToken = () => {
       return;
     }
 
-    // Step 6: Retry fetching the token if necessary. (up to 3 times)
+    // Step 5: Retry fetching the token if necessary. (up to 3 times)
     // This step is typical initially as the service worker may not be ready/installed yet.
     if (!token) {
       if (retryLoadToken.current >= 3) {
@@ -85,18 +84,16 @@ const useFcmToken = () => {
       return;
     }
 
-    // Step 7: Set the fetched token and mark as fetched.
     setNotificationPermissionStatus(Notification.permission);
     setToken(token);
 
-    // store fcmToken
     await saveFcmToken(token);
 
     isLoading.current = false;
   };
 
   useEffect(() => {
-    // Step 8: Initialize token loading when the component mounts.
+    // Step 6: Initialize token loading when the component mounts.
     if ("Notification" in window) {
       loadToken();
     }
@@ -110,7 +107,7 @@ const useFcmToken = () => {
       const m = await messaging();
       if (!m) return;
 
-      // Step 9: Register a listener for incoming FCM messages.
+      // Step 7: Register a listener for incoming FCM messages.
       const unsubscribe = onMessage(m, (payload) => {
         if (Notification.permission !== "granted") return;
 
@@ -151,7 +148,6 @@ const useFcmToken = () => {
       }
     });
 
-    // Step 11: Cleanup the listener when the component unmounts.
     return () => unsubscribe?.();
   }, [token, router, toast]);
 
