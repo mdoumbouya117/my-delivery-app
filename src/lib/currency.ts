@@ -1,6 +1,6 @@
 const CURRENCY_FORMATTER = new Intl.NumberFormat("fr-GN", {
   style: "currency",
-  currency: "EUR",
+  currency: "GNF",
   currencyDisplay: "code",
 });
 

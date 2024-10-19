@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -187,6 +188,7 @@ export default function SignUp() {
             <Button type="submit" className="w-full">
               Create an account
             </Button>
+            <Separator />
             <Button variant="outline" className="w-full">
               Sign up with Google
             </Button>
@@ -196,7 +198,7 @@ export default function SignUp() {
           </div>
         </form>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
+          Already have an account ?{" "}
           <Link href="/signin" className="underline">
             Login
           </Link>

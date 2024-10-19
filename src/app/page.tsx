@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import RestaurantList from "@/components/RestaurantList";
 import SendNotificationButton from "@/components/SendNotificationButton";
 import useFcmToken from "@/hooks/useFcmToken";
+import Payment from "./payment/page";
 
 const Home = () => {
   const { token, notificationPermissionStatus } = useFcmToken();
@@ -22,6 +23,8 @@ const Home = () => {
         ) : null}
 
         {token && <SendNotificationButton token={token} />}
+
+        <Payment />
 
         <RestaurantList />
       </main>

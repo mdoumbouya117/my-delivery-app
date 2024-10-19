@@ -1059,3 +1059,34 @@ export const customers = [
     status: "active",
   },
 ];
+
+export const promotions = [
+  {
+    id: 1,
+    image: "/promo1.jpg",
+    title: "Summer Sale!",
+    description: "Up to 50% off on all items.",
+    link: "/promo/summer-sale",
+  },
+  {
+    id: 2,
+    image: "/promo2.jpg",
+    title: "Buy 1 Get 1 Free!",
+    description: "Limited time offer on select items.",
+    link: "/promo/bogo",
+  },
+  {
+    id: 3,
+    image: "/promo3.jpg",
+    title: "Exclusive Member Discounts",
+    description: "Sign up today to enjoy exclusive perks.",
+    link: "/promo/members",
+  },
+  {
+    id: 4,
+    image: "/promo4.jpg",
+    title: "Exclusive Member Discounts",
+    description: "Sign up today to enjoy exclusive perks.",
+    link: "/promo/members",
+  },
+];

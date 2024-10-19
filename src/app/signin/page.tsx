@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@/contexts/UserProvider";
@@ -52,7 +53,7 @@ export default function SignIn() {
           <div className="grid gap-2">
             <div className="flex items-center">
               <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
+                Forgot your password ?
               </Link>
             </div>
             <Input ref={passwordRef} type="password" required />
@@ -60,6 +61,7 @@ export default function SignIn() {
           <Button type="submit" className="w-full">
             Login
           </Button>
+          <Separator />
           <Button variant="outline" className="w-full">
             Login with Google
           </Button>
@@ -68,7 +70,7 @@ export default function SignIn() {
           </Button>
         </form>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account ?{" "}
           <Link href="/signup" className="underline">
             Sign up
           </Link>

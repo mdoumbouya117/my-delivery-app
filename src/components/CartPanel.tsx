@@ -1,6 +1,8 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useState } from "react";
 import Image from "next/image";
-import { Trash2Icon } from "lucide-react";
+import { Trash2Icon, Coins } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -31,6 +33,13 @@ const CartPanel = ({ sheetTrigger }: { sheetTrigger: ReactNode }) => {
     cartItems,
   } = useCart();
   const groupedItems = groupBy(cartItems);
+  const [paymentMethod, setPaymentMethod] = useState<string>("credit-card");
+
+  const paymentMethods = [
+    { icon: <Coins />, label: "Apple Pay" },
+    { icon: <Coins />, label: "PayPal" },
+    { icon: <Coins />, label: "Visa" },
+  ];
 
   return (
     <Sheet>
@@ -114,7 +123,16 @@ const CartPanel = ({ sheetTrigger }: { sheetTrigger: ReactNode }) => {
               <dt>Total</dt>
               <dd>{formatCurrencyFull(getTotalPrice())}</dd>
             </dl>
-            <SheetFooter className="mt-7">
+            <SheetFooter className="mt-9 grid grid-cols-1 gap-1">
+              <div className="border border-slate-400 rounded-lg p-1 m-4">
+                <h3 className="text-sm text-slate-400 font-semibold mb-2">
+                  Payment Method
+                </h3>
+                <div className="flex">
+                  <Coins className="mr-1" /> Cash
+                </div>
+              </div>
+
               <SheetClose asChild>
                 <Button type="submit" className="m-auto">
                   Submit order
